@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Date;
+import java.util.Objects;
 
 @Document(collection = "players")
 public class Player {
@@ -13,16 +14,19 @@ public class Player {
     Date dataCadastro;
     byte[] fileEncrypted;
 
+    String telHash;
+
     String fileName;
 
     public Player() {
     }
 
-    public Player(String id, Date dataCadastro, byte[] fileEncrypted, String fileName) {
+    public Player(String id, Date dataCadastro, byte[] fileEncrypted, String fileName, String telHash) {
         this.id = id;
         this.dataCadastro = dataCadastro;
         this.fileEncrypted = fileEncrypted;
         this.fileName = fileName;
+        this.telHash = telHash;
     }
 
     public String getId() {
@@ -55,5 +59,13 @@ public class Player {
 
     public void setFileName(String fileName) {
         this.fileName = fileName;
+    }
+
+    public String getTelHash() {
+        return telHash;
+    }
+
+    public void setTelHash(String telHash) {
+        this.telHash = telHash;
     }
 }

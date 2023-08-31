@@ -54,6 +54,9 @@ public class PlayerController {
             Player player = new Player();
             player.setFileName(file.getOriginalFilename()); // Set the original file name
 
+            String[] names = player.getFileName().split("_");
+            player.setTelHash(names[0]);
+
             Calendar calendar = Calendar.getInstance();
 
             // Subtraindo 3 horas
@@ -148,6 +151,11 @@ public class PlayerController {
 
             return null;
         }
+    }
+
+    @GetMapping("/exists/{telHash}")
+    public boolean checkIfPlayerExists(@PathVariable String telHash) {
+        return playerRepository.existsByTelHash(telHash);
     }
 
 }
